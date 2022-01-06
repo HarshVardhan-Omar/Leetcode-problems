@@ -10,12 +10,10 @@ class Solution {
         int n=s.length();
         for(int i=0;i<n;i++){
                 char ch=s.charAt(i);
-                int val=(int)ch;
                 if(isvalid(ch)){
                 newstring=newstring+ch;
                 }
         }
-            System.out.print(newstring);
             return ispalindrome(newstring,newstring.length());
         
             
