@@ -10,12 +10,17 @@ class Solution {
                           st.pop();  
                     }
             }
-            StringBuilder str=new StringBuilder();
+            // StringBuilder str=new StringBuilder();
+            String str="";
             while(!st.isEmpty()){
-                    str.append(st.pop());
+                   str=str+st.pop();
             }
-            str=str.reverse();
-            String res=str.toString();
+            String res="";
+            for(int i=str.length()-1;i>=0;i--){
+                    res=res+str.charAt(i);
+                    
+            }
+            // String res=str.toString();
             return res;
         
     }
