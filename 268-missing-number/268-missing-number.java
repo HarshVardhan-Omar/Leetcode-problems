@@ -1,14 +1,28 @@
 class Solution {
     public int missingNumber(int[] nums) {
-            int normalxor=0;
-            for(int i=0;i<=nums.length;i++){
-                    normalxor=normalxor^i;
+            int i=0;
+            int n=nums.length;
+            while(i<n){
+                    int corindex=nums[i];
+                    if(corindex<n){
+                            if(nums[i]!=nums[corindex]){
+                                    int temp=nums[i];
+                                    nums[i]=nums[corindex];
+                                    nums[corindex]=temp;
+                            }
+                            else{
+                                    i++;
+                            }
+                    }
+                    else{
+                            i++;
+                    }
             }
-            int givenxor=0;
-            for(int i=0;i<nums.length;i++){
-                    givenxor=givenxor^nums[i];
+            for(int j=0;j<n;j++){
+                    if(nums[j]!=j)
+                            return j;
             }
-            return givenxor^normalxor;
+            return n;
         
     }
 }
