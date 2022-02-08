@@ -6,7 +6,6 @@ class Solution {
                 int sum=0;
                 while(i<windowsize&&i<n){
                         sum+=nums[i];
-                        System.out.println(sum);
                         i++;
                 }
                 if(sum>=target){
@@ -15,7 +14,6 @@ class Solution {
                 while(i<n){
                         sum+=nums[i];
                         sum-=nums[i-windowsize];
-                        System.out.println(sum);
                         if(sum>=target)
                                 return true;
                         i++;
@@ -30,7 +28,6 @@ class Solution {
             while(s<=e){
                     int mid=s+(e-s)/2;
                     if(ispossible(nums,target,mid)){
-                            // System.out.println("true bheja");
                             ans=mid;
                             e=mid-1;
                     }
