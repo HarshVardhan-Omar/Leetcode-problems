@@ -12,10 +12,8 @@ class Solution {
             
     }
     private int compare(String s1,String s2){
-            System.out.println(s1+" "+s2);
             int n1=s1.length();
             int n2=s2.length();
-            System.out.println(n1+" "+n2);
             int a=0;
             int b=0;
             int temp=n1;
@@ -29,7 +27,6 @@ class Solution {
                     b=(int)((s2.charAt(j)-'0')*Math.pow(10,temp1-1))+b;
                     temp1--;
             }
-            System.out.println(a+" "+b);
             if(a>b){
                     return 1;
             }
@@ -37,7 +34,6 @@ class Solution {
                     return -1;
             }
             return 0;
-            // return false;
     }
     public int compareVersion(String s1, String s2) {
             int n=s1.length();
@@ -50,25 +46,19 @@ class Solution {
                     int dot2=s2.indexOf('.');
                     String str1=removeleadingzero(s1.substring(0,dot1));
                     String str2=removeleadingzero(s2.substring(0,dot2));
-                    System.out.println(str1+" "+str2);
                     s1=s1.substring(dot1+1);
                     s2=s2.substring(dot2+1);
                     ans=compare(str1,str2);
-                    // System.out.println(ans);
                     if(ans!=0){
                             return ans;
                     }
                     n=s1.length();
                     m=s2.length();
             }
-            // System.out.println(s1+" "+s2);
-            // System.out.println(n+" "+m);
             while(n!=0){
                     int dot1=s1.indexOf('.');
                     String s=s1.substring(0,dot1);
-                    // System.out.println(s);
                     ans=compare(s,"0");
-                    // System.out.println(ans);
                     if(ans!=0){
                             return ans;
                     }
@@ -76,9 +66,7 @@ class Solution {
                     n=s1.length();
             }
             while(m!=0){
-                    // System.out.println(s2);
                     int dot1=s2.indexOf('.');
-                    // System.out.println(dot1);
                     String s=s2.substring(0,dot1);
                     ans=compare("0",s);
                     if(ans!=0){
