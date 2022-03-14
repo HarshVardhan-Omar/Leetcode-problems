@@ -1,5 +1,7 @@
-class Solution {
-        private boolean ispossible(int[] nums,int target,int mid){
+class Solution {  
+   
+   //Function to Check whether a subarray of size mid is valid subarray or not
+   private boolean ispossible(int[] nums,int target,int mid){
                 int n=nums.length;
                 int windowsize=mid;
                 int i=0;
@@ -25,6 +27,8 @@ class Solution {
             int s=0;
             int e=n;
             int ans=0;
+            
+            //Binary Search on 0-N as subarray length can vary from 0-N
             while(s<=e){
                     int mid=s+(e-s)/2;
                     if(ispossible(nums,target,mid)){
