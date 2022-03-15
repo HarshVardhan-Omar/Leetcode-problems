@@ -16,7 +16,7 @@ class Solution {
                             }
                     }
             }
-            String ans="";
+            StringBuilder ans=new StringBuilder("");
             Set<Integer> indexremove=new HashSet<>();
             while(!st.isEmpty()){
                     indexremove.add(st.peek().getValue());
@@ -24,10 +24,10 @@ class Solution {
             }
             for(int i=0;i<n;i++){
                     if(!indexremove.contains(i)){
-                            ans+=s.charAt(i);
+                            ans.append(s.charAt(i));
                     }
             }
-            return ans;
+            return ans.toString();
         
     }
 }
