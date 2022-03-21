@@ -2,7 +2,6 @@ class Solution {
     public List<Integer> partitionLabels(String s) {
             int n=s.length();
             int[] lastindex=new int[26];
-            int[] visited=new int[26];
             List<Integer> ans=new ArrayList<>();
             
             for(int i=0;i<n;i++){
@@ -30,9 +29,7 @@ class Solution {
                             prevlast=lastindex[s.charAt(temp)-'a'];
                             end=prevlast;
                     }
-                    temp++;
-                    
-                    
+                    temp++;        
             }
             return ans;
         
