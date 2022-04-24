@@ -14,18 +14,6 @@ class Node {
 */
 
 class Solution {
-    private void insertAttail(Node head, Node tail,int data){
-            Node newnode=new Node(data);
-            if(head == null){
-                    head=newnode;
-                    tail=newnode;
-                    return;
-            }
-            else{
-                    tail.next=newnode;
-                    tail=newnode;
-            }
-    }
     public Node copyRandomList(Node head) {
             // Step1 : Create normal clone using next pointer 
              Node temp=head;
@@ -66,9 +54,6 @@ class Solution {
                     clone=clone.next;
                     originalhead=originalhead.next;
             }
-            return clonehead;
-            
-            
-        
+            return clonehead;      
     }
 }
