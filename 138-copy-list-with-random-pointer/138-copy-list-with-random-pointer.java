@@ -15,10 +15,12 @@ class Node {
 
 class Solution {
     public Node copyRandomList(Node head) {
-            // Step1 : Create normal clone using next pointer 
-             Node temp=head;
-             Node clonehead=null;
-             Node clonetail=null;
+            
+          //Step1: Create a Clone Linked List
+            
+            Node clonehead=null;
+            Node clonetail=null;
+            Node temp=head;
             
             while(temp != null){
                     Node newnode=new Node(temp.val);
@@ -33,27 +35,45 @@ class Solution {
                     temp=temp.next;
             }
             
-            //Step 2: Create a mapping to store random pointers
-            HashMap<Node,Node> mp=new HashMap<>();
+          //Step2: Add clone likedlist in between original list
             
+           Node original=head;
+           Node clone=clonehead;
+            
+            while(original != null && clone != null){
+                    Node next=original.next;
+                    original.next=clone;
+                    original=next;
+                    
+                    next=clone.next;
+                    clone.next=original;
+                    clone=next;
+            }
+            
+          //Step3: Add the random pointers to the clonedlist
             temp=head;
-            Node clone=clonehead;
-            
-            while(temp != null && clone != null){
-                    mp.put(temp,clone);
-                    temp=temp.next;
-                    clone=clone.next;
+            while(temp != null){
+                    if(temp.next!=null){
+                            temp.next.random= temp.random!=null?temp.random.next:temp.random;
+                    }
+                    temp=temp.next.next;
             }
             
-            // Step3: Make random pointer allocation
-            
-            clone=clonehead;
-            Node originalhead=head;
-            while(clone != null){
-                    clone.random=mp.get(originalhead.random);
+          //Step4: revert changes made in step2
+           original=head;
+           clone=clonehead;
+            while(original != null && clone != null){
+                    original.next=clone.next;
+                    original=original.next;
+                    if(clone.next != null){
+                    clone.next=clone.next.next;
+                    }
                     clone=clone.next;
-                    originalhead=originalhead.next;
             }
-            return clonehead;      
+           
+          // Return clonehead;
+            return clonehead;
+            
+        
     }
 }
