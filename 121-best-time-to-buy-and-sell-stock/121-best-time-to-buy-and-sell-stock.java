@@ -1,22 +1,18 @@
 class Solution {
-    public int maxProfit(int[] prices) {
+    public int maxProfit(int[] prices){
             int n=prices.length;
-            int leastvalue=Integer.MAX_VALUE;
+            int leastprice=Integer.MAX_VALUE;
+            int maxprofit=0;
             int profit=0;
-            int todayprofit=0;
-            for(int i=0;i<n;i++){
-                    
-                    //Can we buy
-                    if(prices[i]<leastvalue){
-                            leastvalue=prices[i];
+            int i=0;
+            while(i<n){
+                    if(prices[i]<leastprice){
+                            leastprice=prices[i];
                     }
-                    
-                    //Can we sell
-                    todayprofit=prices[i]-leastvalue;
-                    if(todayprofit>profit)
-                            profit=todayprofit;
+                    profit=prices[i]-leastprice;
+                    maxprofit=Math.max(maxprofit,profit);
+                    i++;
             }
-            return profit;
-        
+        return maxprofit;
     }
 }
