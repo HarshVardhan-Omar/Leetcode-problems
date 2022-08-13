@@ -1,40 +1,38 @@
 class Solution {
-    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        int n = image.length;
-        int m = image[0].length;
-        int src_element = image[sr][sc];//store the prev color of image[sr][sc]
-        
-        
-        // If newColor is equal to previous color of element at [sr,sc] then there is no need of applying DFS as matrix will remain same  
-        if(src_element == newColor)
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+            int m=image.length;
+            int n=image[0].length;
+            if(color == image[sr][sc])
+                    return image;
+            int old=image[sr][sc];
+            
+            dfs(sr,sc,image,color,old);
             return image;
         
-        Queue<int[]> q=new LinkedList<>();//to store the newly coloured elements's index
-        
-        image[sr][sc]=newColor;
-        
-        q.offer(new int[]{sr,sc});
-        
-        int dx[]={0,0,-1,1};
-        int dy[]={-1,1,0,0};
-        while(!q.isEmpty())
-        {
-            int size=q.size();
-            for(int i=0;i<size;i++)
-            {
-                int p[]=q.poll();
-                for(int j=0;j<4;j++)
-                {
-                    int x=p[0]+dx[j];
-                    int y=p[1]+dy[j];
-                    if(x<0 || y<0 || x>=n || y>=m || image[x][y]!=src_element)
-                        continue;
-                    image[x][y]=newColor;
-                    q.offer(new int[]{x,y});
-                }
-            }
-        }
-        return image;
     }
-    
+        
+    private void dfs(int r,int c,int[][] image,int color,int old){
+            int m=image.length;
+            int n=image[0].length;
+            if(image[r][c] != old){
+                    return;
+            }
+            image[r][c]=color;
+            
+            for(int i=-1;i<=1;i++){
+                    int nr=r+i;
+                    int nc=c;
+                    if(nr>=0 && nr<m && image[nr][nc] == old){
+                            dfs(nr,nc,image,color,old);
+                    }
+            }
+            for(int i=-1;i<=1;i++){
+                    int nr=r;
+                    int nc=c+i;
+                    
+                    if(nc >= 0 && nc < n && image[nr][nc] == old) {
+                            dfs(nr,nc,image,color,old);
+                    }
+            }
+    }
 }
