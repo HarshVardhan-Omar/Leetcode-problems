@@ -1,47 +1,73 @@
 class Solution {
-    
-    private static int[][] ways = new int[][]{
-      new int[]{1,0},
-      new int[]{-1,0},
-      new int[]{0,1},
-      new int[]{0,-1},
-    };
-    
-    
-    public int[][] updateMatrix(int[][] w) {
-        Deque<Pair> deque = new ArrayDeque<>();
-        for (int i = 0; i < w.length; i++) {
-            for (int j = 0; j < w[0].length; j++) {
-                if (w[i][j] == 0) {
-                    deque.addLast(new Pair(i, j, 0));
-                } else {
-                    w[i][j] = -1;
+        class pair{
+                int a,b,c;
+                pair(int a,int b,int c){
+                        this.a=a;
+                        this.b=b;
+                        this.c=c;
+                }
+        }
+    public int[][] updateMatrix(int[][] mat) {
+            int m=mat.length;
+            int n=mat[0].length;
+            
+            int[][] vis=new int[m][n];
+            int[][] ans=new int[m][n];
+            
+            Queue<pair> bfs=new LinkedList<>();
+            
+            for(int i=0;i<m;i++){
+                    for(int j=0;j<n;j++){
+                            vis[i][j]=0;
+                    }
+            }
+            
+            for(int i=0;i<m;i++){
+                    for(int j=0;j<n;j++){
+                            if(mat[i][j]==0){
+                                    vis[i][j]=1;
+                                    bfs.add(new pair(i,j,0));
+                            }
+                    }
+            }
+            
+            while(!bfs.isEmpty()){
+                    int row=bfs.peek().a;
+                    int col=bfs.peek().b;
+                    int steps=bfs.peek().c;
+                    
+                    bfs.poll();
+                    ans[row][col]=steps;
+                    if(row-1>=0){
+                if(vis[row-1][col] == 0){
+                    vis[row-1][col]=1;
+                    bfs.add(new pair(row-1,col,steps+1));
                 }
             }
-        }
-        while (!deque.isEmpty()) {
-            Pair pair = deque.removeFirst();
-            for (int[] way : ways) {
-                int i = pair.i + way[0];
-                int j = pair.j + way[1];
-                if (i >= 0 && j >= 0 && i < w.length && j < w[i].length
-                   && w[i][j] == -1) {
-                    w[i][j] = pair.level + 1;
-                    deque.add(new Pair(i,j,w[i][j]));
+                if(row+1<m){
+                        if(vis[row+1][col] == 0){
+                                vis[row+1][col]=1;
+                                bfs.add(new pair(row+1,col,steps+1));
                 }
+                
             }
-        }
-        return w;
-    }
-    
-    private static class Pair{
-        int i;
-        int j;
-        int level;
-        Pair(int i, int j, int level) {
-            this.i = i;
-            this.j = j;
-            this.level = level;
-        }
+            if(col-1>=0){
+                if(vis[row][col-1] == 0){
+                    vis[row][col-1]=1;
+                    bfs.add(new pair(row,col-1,steps+1));
+                }
+                
+            }
+            if(col+1<n){
+                if(vis[row][col+1] == 0){
+                    vis[row][col+1]=1;
+                    bfs.add(new pair(row,col+1,steps+1));
+                }
+                
+            }
+                    
+            }
+            return ans;
+        
     }
 }
