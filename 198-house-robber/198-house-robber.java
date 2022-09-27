@@ -1,0 +1,18 @@
+class Solution {
+    public int rob(int[] nums) {
+        int n = nums.length;
+        int[] dp=new int[n+1];
+        Arrays.fill(dp,-1);
+        return findmax(nums,n-1,dp);
+    }
+    int findmax(int[] nums,int ind,int[] dp){
+            if(ind == 0)return nums[ind];
+            if(ind < 0)return 0;
+            if(dp[ind] != -1)return dp[ind];
+            
+            int pick=nums[ind]+findmax(nums,ind-2,dp);
+            int nonpick=findmax(nums,ind-1,dp);
+            
+            return dp[ind]=Math.max(pick,nonpick);
+    }
+}
