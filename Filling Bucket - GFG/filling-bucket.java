@@ -24,18 +24,17 @@ class GFG {
 
 class Solution {
     static int fillingBucket(int n) {
-        int[] dp=new int[n+1];
-        for(int i=0;i<n+1;i++){
-            dp[i]=-1;
+        int mod=(int)1e8;
+        int a=0;
+        int b=1;
+        int c=-1;
+        while(n != 0){
+            c=(b+a)%mod;
+            a=b;
+            b=c;
+            n--;
         }
-        return solve(n,dp);
+        return c;
     }
-    private static int solve(int n,int[] dp){
-        if( n == 2 )return 2;
-        if( n == 1 )return 1;
-        if(dp[n] != -1)return dp[n];
-        int one=solve(n-1,dp)%100000000;
-        int two=solve(n-2,dp)%100000000;
-        return dp[n]=(one+two)%(100000000);
-    }
+    
 };
