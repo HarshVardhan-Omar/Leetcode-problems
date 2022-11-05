@@ -31,18 +31,7 @@ class Solution{
     static List<Integer> minPartition(int n)
     {
         List<Integer> ans=new ArrayList<>();
-        int[] coins=new int[10];
-        coins[0]=1;
-        coins[1]=2;
-        coins[2]=5;
-        coins[3]=10;
-        coins[4]=20;
-        coins[5]=50;
-        coins[6]=100;
-        coins[7]=200;
-        coins[8]=500;
-        coins[9]=2000;
-        
+        int[] coins={1,2,5,10,20,50,100,200,500,2000};
         for(int i=9;i>=0;i--){
             while(coins[i] <= n){
                 n-=coins[i];
