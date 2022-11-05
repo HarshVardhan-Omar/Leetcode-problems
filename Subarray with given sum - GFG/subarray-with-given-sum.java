@@ -52,7 +52,7 @@ class Solution
             for(int i=0;i<n;i++){
                 sum+=arr[i];
                 if(sum > s){
-                    while(sum > s && last <= i){
+                    while(sum > s){
                         sum-=arr[last];
                         last++;
                     }
