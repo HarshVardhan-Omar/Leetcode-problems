@@ -35,25 +35,26 @@ class Solution
 	        sum+=i;
 	    }
 	    int k=sum;
-	    boolean[][] dp=new boolean[n][k+1];
-	    for(int i=0;i<n;i++){
-	        dp[i][0]=true;
-	    }
-	    if(arr[0] <= k)dp[0][arr[0]]=true;
+	    boolean[] prev=new boolean[k+1];
+	    prev[0]=true;
+	    if(arr[0] <= k)prev[arr[0]]=true;
 	    
 	    for(int i=1;i<n;i++){
+	        boolean[] curr=new boolean[k+1];
 	        for(int j=1;j<k+1;j++){
+	            curr[0]=true;
 	            boolean take=false;
 	            if(j >= arr[i]){
-	                take=dp[i-1][j-arr[i]];
+	                take=prev[j-arr[i]];
 	            }
-	            boolean nottake=dp[i-1][j];
-	            dp[i][j]=take || nottake;
+	            boolean nottake=prev[j];
+	            curr[j]=take || nottake;
 	        }
+	        prev=curr;
 	    }
 	    int min=Integer.MAX_VALUE;
 	    for(int i=0;i<=sum/2;i++){
-	        if(dp[n-1][i]){
+	        if(prev[i]){
 	            int s2=sum-i;
 	            int diff=Math.abs(s2-i);
 	            min=Math.min(min,diff);
