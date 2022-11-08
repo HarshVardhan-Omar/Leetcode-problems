@@ -52,7 +52,7 @@ class Solution
 	        }
 	    }
 	    int min=Integer.MAX_VALUE;
-	    for(int i=0;i<=sum;i++){
+	    for(int i=0;i<=sum/2;i++){
 	        if(dp[n-1][i]){
 	            int s2=sum-i;
 	            int diff=Math.abs(s2-i);
