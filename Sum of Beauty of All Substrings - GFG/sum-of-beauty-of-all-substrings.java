@@ -38,15 +38,12 @@ class Solution {
                 cnt[ch2-'a']++;
                 int max=Integer.MIN_VALUE;
                 int min=Integer.MAX_VALUE;
-                // System.out.println(Arrays.toString(cnt));
                 for(int k=0;k<26;k++){
                     if(cnt[k] != 0 && cnt[k] > max)max=cnt[k];
                     if(cnt[k] != 0 && cnt[k] < min)min=cnt[k];
                 }
                 ans+=max-min;
-                // System.out.println(ans);
             }
-            cnt[ch-'a']--;
         }
         return ans;
     }
