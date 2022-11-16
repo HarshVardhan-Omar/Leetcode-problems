@@ -29,8 +29,8 @@ class Solution {
         // code here
         int n=s.length();
         int ans=0;
+        int[] cnt=new int[26];
         for(int i=0;i<n;i++){
-            int[] cnt=new int[26];
             char ch=s.charAt(i);
             cnt[ch-'a']++;
             for(int j=i+1;j<n;j++){
@@ -43,6 +43,9 @@ class Solution {
                     if(cnt[k] != 0 && cnt[k] < min)min=cnt[k];
                 }
                 ans+=max-min;
+            }
+            for(int a=0;a<26;a++){
+                cnt[a]=0;
             }
         }
         return ans;
