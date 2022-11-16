@@ -44,9 +44,7 @@ class Solution {
                 }
                 ans+=max-min;
             }
-            for(int a=0;a<26;a++){
-                cnt[a]=0;
-            }
+            Arrays.fill(cnt,0);
         }
         return ans;
     }
