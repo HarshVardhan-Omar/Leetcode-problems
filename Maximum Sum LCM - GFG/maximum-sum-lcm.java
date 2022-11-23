@@ -21,7 +21,6 @@ class GFG {
 //User function Template for Java
 class Solution {
     static long maxSumLCM(int n) {
-        if(isPrime(n))return n+1;
         long ans=0;
         for(int i=1;i*i<=n;i++){
             if(n%i == 0){
@@ -33,11 +32,5 @@ class Solution {
             }
         }
         return ans;
-    }
-    private static boolean isPrime(int n){
-        for(int i=2;i*i<=n;i++){
-            if(n%i == 0)return false;
-        }
-        return true;
     }
 }
