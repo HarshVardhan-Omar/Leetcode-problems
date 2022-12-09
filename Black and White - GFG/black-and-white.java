@@ -22,7 +22,7 @@ class BlackAndWhite
 {
     //Function to find out the number of ways we can place a black and a 
     //white Knight on this chessboard such that they cannot attack each other.
-    private static boolean safe(int i,int j,int n,int m){
+    private static boolean safe(long i,long j,int n,int m){
         if(i >= 0 && i < n && j >= 0 && j < m)return true;
         return false;
     }
@@ -31,52 +31,17 @@ class BlackAndWhite
         long mod=1000000007;
         long ways=0;
         int total=n*m;
+        long[][] moves={{1,2},{2,1},{2,-1},{1,-2},{-1,2},{-2,1},{-1,-2},{-2,-1}};
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 //total 16 attacking points
                 long pos=total-1;
-                //Down forward direction
+                for(long[] a:moves){
+                    long nrow=i+a[0];
+                    long ncol=j+a[1];
+                    if(safe(nrow,ncol,n,m))pos--;
+                }
                 
-                ////Horizontal movement
-                int a=i+1;
-                int b=j+2;
-                ////Vertical movement
-                int c=i+2;
-                int d=j+1;
-                
-                //down Backward direction
-                ////vertical movement
-                int e=i+2;
-                int f=j-1;
-                ////Horizontal movement
-                int g=i+1;
-                int h=j-2;
-                
-                //Up Forward direction
-                ///Horizontal movement
-                int w=i-1;
-                int k=j+2;
-                ////vertical movement
-                int l=i-2;
-                int x=j+1;
-                
-                //Up backward movement
-                ////Horizontal movement
-                int y=i-1;
-                int z=j-2;
-                ////vertical movement
-                int val=i-2;
-                int val1=j-1;
-                
-                
-                if(safe(a,b,n,m))pos--;
-                if(safe(c,d,n,m))pos--;
-                if(safe(e,f,n,m))pos--;
-                if(safe(g,h,n,m))pos--;
-                if(safe(w,k,n,m))pos--;
-                if(safe(l,x,n,m))pos--;
-                if(safe(y,z,n,m))pos--;
-                if(safe(val,val1,n,m))pos--;
                 ways+=pos;
             }
         }
