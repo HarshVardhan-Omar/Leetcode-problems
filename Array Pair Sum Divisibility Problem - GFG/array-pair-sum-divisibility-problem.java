@@ -42,12 +42,13 @@ class Solution {
         if(n % 2 != 0)return false;
         int s=0;
         for(int i=0;i<n;i++){
-            nums[i]=nums[i]%k;
-            mp.put(nums[i],mp.getOrDefault(nums[i],0)+1);
+            int key=nums[i]%k;
+            mp.put(key,mp.getOrDefault(key,0)+1);
+            s+=nums[i];
         }
         if(s % k != 0)return false;
         
-        for(int i:nums){
+        for(int i:mp.keySet()){
             if(i == 0){
                 if(mp.get(i) % 2 != 0)return false;
             }
@@ -57,7 +58,5 @@ class Solution {
             }
         }
         return true;
-        
-        
     }
 }
